@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Piston</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+</head>
+<body style="margin: 0;">
+	<canvas id="simulation" style="position: absolute; left: 0%; height: 100vh; width: 35%; background-color: yellow;"></canvas>
+	<div style="position: absolute; left: 36%; top: 0%; height: 50vh; width: 35%; text-align: center;">
+		<canvas id="graph_velocity"></canvas>
+	</div>
+	<div style="position: absolute; left: 36%; top: 50%; height: 50vh; width: 35%;">
+		<canvas id="graph_vel"></canvas>
+	</div>	
+	<div style="position: absolute; right: 0%; height: 100vh; width: 30%; text-align: center;">
+		<p class="simulation">Режим моделирования:</p>
+		<div class="dropdown">
+		    <select id="type_modeling" class="dropdown-select">
+		    	<option value="modeling">Моделирование</option>
+		    	<option value="statistics">Статистика</option>
+		    </select>
+		</div>
+		<p class="simulation">Движение поршня:</p>
+		<div class="dropdown">
+		    <select id="movement_piston" class="dropdown-select">
+		    	<option value="move">Да</option>
+		    	<option value="stop">Нет</option>
+		    </select>
+		</div>
+		<p class="simulation">Количество частиц: <span id="count_molecules">10</span></p>
+		<input class="range" oninput="document.getElementById('count_molecules').innerHTML=Math.floor(this.value); molecules_count=Math.floor(this.value);changesMolecules();" type="range" value="10" min="1" max="1000" />
+		<p class="simulation">Размер частиц: <span id="size_molecules">1</span></p>
+		<input class="range" oninput="document.getElementById('size_molecules').innerHTML=Math.floor(this.value);molecules_radius=Math.floor(this.value);changesMolecules();" type="range" value="1" min="1" max="20" />
+		<p class="simulation">Начальная температура: <span id="temperature"></span></p>
+		<input class="range" type="range" value="1" min="1" max="10000" />
+		<div class="simulation_play">
+			<button id="btn_start" type="button" onclick="startSimulation()">Старт</button>
+			<button id="btn_pause" type="button" onclick="pauseSimulation()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">\
+			  	<path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>\
+			</svg></button>
+		</div>
+	</div>
+	<script type="text/javascript" src="utils.js"></script>
+	<script type="text/javascript" src="graphics.js" async defer></script>
+	<script type="text/javascript" src="script.js" async></script>
+</body>
+</html>
